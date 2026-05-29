@@ -56,6 +56,12 @@ export default async function AdminPage() {
 
       <div className="max-w-6xl mx-auto px-6 py-8 space-y-10">
 
+        <div className="mb-6">
+          <a href="/admin/reports" className="inline-flex items-center gap-2 bg-orange-500 hover:opacity-80 text-white text-sm font-medium px-4 py-2 rounded-xl transition-colors">
+            View Reports Dashboard
+          </a>
+        </div>
+
         <div className="grid grid-cols-3 gap-4">
           <div className="app-surface rounded-xl p-5 border app-border">
             <p className="app-text-muted text-sm">Total Users</p>

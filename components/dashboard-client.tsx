@@ -57,6 +57,7 @@ interface Post {
   media_url?: string | null
   media_type?: string | null
   anonymous?: boolean | null
+  hidden?: boolean | null
   created_at: string
   profiles: {
     full_name: string | null
@@ -149,6 +150,7 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [aboutOpen, setAboutOpen] = useState(false)
   const [posts, setPosts] = useState<Post[]>(initialPosts)
+  const visiblePosts = posts.filter(p => !p.hidden)
   const [likes, setLikes] = useState<Like[]>(initialLikes)
   const [replies, setReplies] = useState<Reply[]>(initialReplies)
   const [newPostContent, setNewPostContent] = useState("")
@@ -722,7 +724,7 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
               </div>
 
               <div className="space-y-4">
-                {posts.map((post) => {
+                {visiblePosts.map((post) => {
                   const postReplies = getRepliesForPost(post.id)
                   const liked = isLiked(post.id)
                   const likeCount = getLikeCount(post.id)
