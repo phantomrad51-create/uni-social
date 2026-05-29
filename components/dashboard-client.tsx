@@ -3,7 +3,7 @@
 import { useState, useMemo, useCallback, useEffect } from "react"
 import Link from "next/link"
 import { sendNotification } from "@/lib/notifications"
-import { Home, Users, UserPlus, Bell, User, Search, MessageCircle, UserCheck, Heart, Send, GraduationCap, Menu, X, Info, Calendar, Users as UsersIcon, BookOpen, ChevronDown, ChevronRight, ShieldCheck, Settings, Trash2, ImageIcon, EyeOff, Eye } from "lucide-react"
+import { Home, Users, UserPlus, Bell, User, Search, MessageCircle, UserCheck, Heart, Send, GraduationCap, Menu, X, Info, Calendar, Users as UsersIcon, BookOpen, ChevronDown, ChevronRight, ShieldCheck, Settings, Trash2, ImageIcon, EyeOff, Eye, Flag } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { createClient } from "@/lib/supabase/client"
 import { SearchModal } from "@/components/search-modal"
@@ -110,6 +110,9 @@ const isStaff = (badgeRole: string | null | undefined) =>
 
 export function DashboardClient({ user, profile, profiles, connections: initialConnections, allConnections, posts: initialPosts, likes: initialLikes, replies: initialReplies, subjectMemberships, signOut }: DashboardClientProps) {
   const [activeTab, setActiveTab] = useState<"home" | "friends" | "connections" | "community" | "messages">("home")
+  const [reportModal, setReportModal] = useState<{ open: boolean; postId: string | null; replyId: string | null }>({ open: false, postId: null, replyId: null })
+  const [reportCategory, setReportCategory] = useState("")
+  const [reportSubmitting, setReportSubmitting] = useState(false)
   const [connections, setConnections] = useState<Connection[]>(initialConnections)
   const [unreadSenders, setUnreadSenders] = useState<Set<string>>(new Set())
 
@@ -239,6 +242,20 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
     setShowReplyInput(prev => ({ ...prev, [postId]: !prev[postId] }))
   }, [])
 
+  const handleReport = async () => {
+  if (!reportCategory) return
+  setReportSubmitting(true)
+  const supabase = createClient()
+  await supabase.from("reports").insert({
+    reporter_id: user.id,
+    post_id: reportModal.postId,
+    reply_id: reportModal.replyId,
+    category: reportCategory,
+  })
+  setReportSubmitting(false)
+  setReportModal({ open: false, postId: null, replyId: null })
+  setReportCategory("")
+}
   const handleLike = async (postId: string) => {
     const already = isLiked(postId)
     if (already) {
@@ -753,6 +770,11 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
                           <MessageCircle className="h-4 w-4" />
                           {postReplies.length} {postReplies.length === 1 ? "Reply" : "Replies"}
                         </button>
+                        <button onClick={() => setReportModal({ open: true, postId: post.id, replyId: null })}
+                          className="flex items-center gap-1 text-xs app-text-muted hover:text-orange-400 transition-colors">
+                          <Flag className="h-3.5 w-3.5" /> Report
+                        </button>
+      
                         {(post.user_id === user.id || ["Founder","Admin","Moderator"].includes(profile?.badge_role ?? "")) && (
                           <button onClick={() => deletePost(post.id)}
                             className="ml-auto flex items-center gap-1 text-xs text-red-400 hover:opacity-80 transition-colors">
@@ -1025,6 +1047,32 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
         </form>
       </div>
 
+      {reportModal.open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
+          <div className="app-surface rounded-2xl p-6 w-full max-w-sm mx-4 border app-border">
+            <h2 className="text-lg font-semibold app-text mb-1">Report Post</h2>
+            <p className="text-sm app-text-muted mb-4">Select a reason for reporting this post.</p>
+            <div className="space-y-2 mb-4">
+              {["NSFW", "Spam", "Bullying", "Scam", "Misinformation", "Other"].map((cat) => (
+                <button key={cat} onClick={() => setReportCategory(cat)}
+                  className={cn("w-full text-left px-4 py-2 rounded-xl border text-sm transition-colors", reportCategory === cat ? "border-orange-400 text-orange-400" : "app-border app-text-muted hover:opacity-80")}>
+                  {cat}
+                </button>
+              ))}
+            </div>
+            <div className="flex gap-2">
+              <button onClick={() => { setReportModal({ open: false, postId: null, replyId: null }); setReportCategory("") }}
+                className="flex-1 px-4 py-2 rounded-xl border app-border app-text-muted text-sm hover:opacity-80">
+                Cancel
+              </button>
+              <button onClick={handleReport} disabled={!reportCategory || reportSubmitting}
+                className="flex-1 px-4 py-2 rounded-xl bg-orange-500 text-white text-sm font-medium hover:opacity-80 disabled:opacity-40">
+                {reportSubmitting ? "Submitting..." : "Submit Report"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} currentUserId={user.id} />
     </div>
   )
