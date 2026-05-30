@@ -317,8 +317,13 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
   }
 
   const handlePost = async () => {
-    const content = newPostContent.trim()
+   const content = newPostContent.trim()
     if (!content && !postMedia) return
+    const { data: freshProfile } = await createClient().from("profiles").select("muted_until").eq("id", user.id).single()
+    if (freshProfile?.muted_until && new Date(freshProfile.muted_until) > new Date()) {
+      alert(`You are muted until ${new Date(freshProfile.muted_until).toLocaleString()}. You cannot post right now.`)
+      return
+    }
     const media = postMedia
     setNewPostContent("")
     setPostMedia(null)
