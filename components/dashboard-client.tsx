@@ -319,9 +319,36 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
   const handlePost = async () => {
    const content = newPostContent.trim()
     if (!content && !postMedia) return
-    const { data: freshProfile } = await createClient().from("profiles").select("muted_until").eq("id", user.id).single()
+    // Block repeated posts — check if user already posted same content
+    const recentPosts = posts.filter(p => p.user_id === user.id).slice(0, 5)
+    if (recentPosts.some(p => p.content.toLowerCase().trim() === content.toLowerCase().trim())) {
+      alert("You already posted this recently. Please don't post duplicate content.")
+      return
+    }
+        // Spam keyword detection
+    const spamKeywords = ["free money", "click here", "win now", "claim your prize", "limited offer", "buy now", "make money fast", "work from home", "guaranteed income", "investment opportunity", "crypto giveaway", "follow for follow", "dm for promo"]
+    const lowerContent = content.toLowerCase()
+    if (spamKeywords.some(keyword => lowerContent.includes(keyword))) {
+      alert("Your post contains content that looks like spam and cannot be posted.")
+      return
+    }
+   const { data: freshProfile } = await createClient().from("profiles").select("muted_until, last_post_at, account_created_at").eq("id", user.id).single()
     if (freshProfile?.muted_until && new Date(freshProfile.muted_until) > new Date()) {
       alert(`You are muted until ${new Date(freshProfile.muted_until).toLocaleString()}. You cannot post right now.`)
+      return
+    }
+    // Cooldown timer — new accounts (less than 7 days old) must wait 5 minutes between posts
+    const accountAge = freshProfile?.account_created_at ? (Date.now() - new Date(freshProfile.account_created_at).getTime()) / (1000 * 60 * 60 * 24) : 999
+    if (accountAge < 7 && freshProfile?.last_post_at) {
+      const minsSinceLastPost = (Date.now() - new Date(freshProfile.last_post_at).getTime()) / 60000
+      if (minsSinceLastPost < 5) {
+        alert(`New accounts can only post every 5 minutes. Please wait ${Math.ceil(5 - minsSinceLastPost)} more minute(s).`)
+        return
+      }
+    }
+    const hasLink = /https?:\/\/|www\./i.test(content)
+    if (hasLink && accountAge < 7) {
+      alert("New accounts cannot post links. This restriction is lifted after 7 days.")
       return
     }
     const media = postMedia
@@ -343,6 +370,7 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
       }
     }
     setPosts(prev => [optimistic, ...prev])
+    await supabase.from("profiles").update({ last_post_at: new Date().toISOString() }).eq("id", user.id)
     const { data } = await supabase.from("posts").insert({
       user_id: user.id, content: content || "",
       media_url: media?.url ?? null,
