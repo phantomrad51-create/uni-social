@@ -28,6 +28,12 @@ export default function ReportsPage() {
     await supabase.from("posts").update({ hidden: true }).eq("id", postId)
     setReports(prev => prev.map(r => r.post_id === postId ? { ...r, post_hidden: true } : r))
   }
+    const muteUser = async (userId: string, hours: number) => {
+    const supabase = createClient()
+    const muteUntil = new Date(Date.now() + hours * 60 * 60 * 1000).toISOString()
+    await supabase.from("profiles").update({ muted_until: muteUntil }).eq("id", userId)
+    alert(`User muted for ${hours} hours.`)
+  }
 
   const warnUser = async (userId: string, postId: string, reason: string) => {
     const supabase = createClient()
@@ -75,6 +81,13 @@ export default function ReportsPage() {
                     className="text-xs bg-orange-500 text-white px-3 py-1.5 rounded-lg hover:opacity-80">
                     Warn User
                   </button>
+                  <select onChange={(e) => { if (e.target.value) muteUser(report.post_author_id, parseInt(e.target.value)) }}
+                    className="text-xs app-input-bg border app-border app-text px-2 py-1.5 rounded-lg">
+                    <option value="">Mute User...</option>
+                    <option value="24">24 hours</option>
+                    <option value="48">48 hours</option>
+                    <option value="168">7 days</option>
+                  </select>
                 </div>
               </div>
             ))}
