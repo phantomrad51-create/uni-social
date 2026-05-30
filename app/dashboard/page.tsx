@@ -20,7 +20,7 @@ export default async function DashboardPage() {
     supabase.from("profiles").select("id, full_name, bio, avatar_url, role, badge_role").neq("id", user.id),
     supabase.from("connections").select("id, sender_id, receiver_id, status").or(`sender_id.eq.${user.id},receiver_id.eq.${user.id}`),
     supabase.from("connections").select("sender_id, receiver_id").eq("status", "accepted"),
-    supabase.from("posts").select("id, user_id, content, anonymous, media_url, media_type, created_at").order("created_at", { ascending: false }).limit(30),
+   supabase.from("posts").select("id, user_id, content, anonymous, media_url, media_type, created_at, hidden").eq("hidden", false).order("created_at", { ascending: false }).limit(30),
     supabase.from("subject_memberships").select("subject").eq("user_id", user.id),
   ]);
 
