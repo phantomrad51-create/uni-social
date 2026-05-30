@@ -34,6 +34,13 @@ export default function ReportsPage() {
     await supabase.from("profiles").update({ muted_until: muteUntil }).eq("id", userId)
     alert(`User muted for ${hours} hours.`)
   }
+  const banUser = async (userId: string) => {
+    const reason = prompt("Enter ban reason:")
+    if (!reason) return
+    const supabase = createClient()
+    await supabase.from("profiles").update({ banned: true, banned_reason: reason }).eq("id", userId)
+    alert("User has been permanently banned.")
+  }
 
   const warnUser = async (userId: string, postId: string, reason: string) => {
     const supabase = createClient()
@@ -88,6 +95,10 @@ export default function ReportsPage() {
                     <option value="48">48 hours</option>
                     <option value="168">7 days</option>
                   </select>
+                  <button onClick={() => banUser(report.post_author_id)}
+                    className="text-xs bg-red-800 text-white px-3 py-1.5 rounded-lg hover:opacity-80">
+                    Ban User
+                  </button>
                 </div>
               </div>
             ))}

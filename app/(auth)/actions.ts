@@ -106,7 +106,7 @@ export async function signIn(_prev: unknown, formData: FormData): Promise<AuthRe
   }
 
   const supabase = await createClient();
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
+  const { error, data } = await supabase.auth.signInWithPassword({ email, password });
 
   if (error) {
     if (error.message.includes("Email not confirmed")) {
@@ -115,9 +115,19 @@ export async function signIn(_prev: unknown, formData: FormData): Promise<AuthRe
     return { error: "Invalid email or password." };
   }
 
+  const { data: profileData } = await supabase
+    .from("profiles")
+    .select("banned, banned_reason")
+    .eq("id", data.user.id)
+    .single();
+
+  if (profileData?.banned) {
+    await supabase.auth.signOut();
+    return { error: `Your account has been permanently banned. Reason: ${profileData.banned_reason ?? "Violation of community guidelines."}` };
+  }
+
   redirect("/dashboard");
 }
-
 export async function signOut() {
   const supabase = await createClient();
   await supabase.auth.signOut();
