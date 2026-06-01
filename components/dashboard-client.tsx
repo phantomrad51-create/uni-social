@@ -595,6 +595,16 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
                       </div>
                     </a>
                   )}
+                  <a href="/rules"
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:opacity-80 transition-colors">
+                    <div className="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-500/30 flex items-center justify-center flex-shrink-0">
+                      <BookOpen className="h-4 w-4 text-blue-400" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium app-text">Community Rules</p>
+                      <p className="text-xs app-text-muted">Platform guidelines</p>
+                    </div>
+                  </a>
 
                   {/* Search — mobile only */}
                   <button onClick={() => { setSidebarOpen(false); setSearchOpen(true) }}
