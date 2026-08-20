@@ -28,7 +28,7 @@ export default async function SubjectsPage() {
     <div className="min-h-screen app-bg app-text">
       <div className="app-surface border-b app-border px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <a href="/dashboard" className="text-indigo-500 font-bold text-lg">Sunway Connect</a>
+          <a href="/dashboard" className="text-violet-500 font-bold text-lg">Sunway Connect</a>
           <span className="app-text-muted">|</span>
           <span className="app-text font-semibold">Subject Communities</span>
         </div>
@@ -53,13 +53,13 @@ export default async function SubjectsPage() {
                   <div key={subject} className="app-surface rounded-xl p-4 border app-border flex items-center justify-between gap-4">
                     <div>
                       <p className="font-medium text-sm app-text">{subject}</p>
-                      {joined && <p className="text-xs text-indigo-500 mt-0.5">Joined</p>}
+                      {joined && <p className="text-xs text-violet-500 mt-0.5">Joined</p>}
                     </div>
                     <form method="POST" action={joined ? `/api/subjects/leave?subject=${encodeURIComponent(subject)}` : `/api/subjects/join?subject=${encodeURIComponent(subject)}`}>
                       <button type="submit"
                         className={joined
                           ? "text-sm px-4 py-1.5 rounded-lg border app-border hover:opacity-80 app-text-muted"
-                          : "text-sm px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white"
+                          : "text-sm px-4 py-1.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white"
                         }>
                         {joined ? "Leave" : "Join"}
                       </button>

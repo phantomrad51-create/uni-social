@@ -414,10 +414,10 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
       .filter(Boolean) as Profile[]
 
     return (
-      <div className="app-surface rounded-xl p-4 border app-border hover:shadow-lg hover:shadow-indigo-500/10 hover:-translate-y-0.5 transition-all">
+      <div className="app-surface rounded-xl p-4 border app-border hover:shadow-lg hover:shadow-violet-500/10 hover:-translate-y-0.5 transition-all">
         <div className="flex items-start gap-3">
           <a href={`/user/${p.id}`} className="flex-shrink-0">
-            <div className="w-14 h-14 rounded-full bg-indigo-600 overflow-hidden ring-2 ring-zinc-700 hover:opacity-80 transition-opacity">
+            <div className="w-14 h-14 rounded-full bg-violet-600 overflow-hidden ring-2 ring-zinc-700 hover:opacity-80 transition-opacity">
               <img src={p.avatar_url || '/default-avatar.png'} alt="" className="w-full h-full object-cover" />
             </div>
           </a>
@@ -451,7 +451,7 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
           <div className="flex-1">
             {status === "none" && (
               <button onClick={() => handleConnect(p.id)}
-                className="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-sm px-4 py-1.5 rounded-lg flex items-center justify-center gap-2">
+                className="w-full bg-violet-600 hover:bg-violet-700 text-white text-sm px-4 py-1.5 rounded-lg flex items-center justify-center gap-2">
                 <UserPlus className="h-4 w-4" /> Connect
               </button>
             )}
@@ -465,7 +465,7 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
               </button>
             )}
             {status === "connected" && (
-              <div className="w-full text-center text-indigo-400 text-sm py-1.5 flex items-center justify-center gap-2">
+              <div className="w-full text-center text-violet-400 text-sm py-1.5 flex items-center justify-center gap-2">
                 <UserCheck className="h-4 w-4" /> Connected
               </div>
             )}
@@ -509,7 +509,7 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
               <button key={tab} onClick={() => setActiveTab(tab)}
                 className={cn(
                   "flex h-10 w-24 items-center justify-center gap-1.5 rounded-lg transition-all hover:opacity-80 text-sm font-medium",
-                  activeTab === tab ? "text-indigo-500 border-b-2 border-indigo-500" : "app-text-muted"
+                  activeTab === tab ? "text-violet-500 border-b-2 border-violet-500" : "app-text-muted"
                 )}>
                 {icon}
                 {label}
@@ -535,7 +535,7 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
               onClick={toggleIncognito}
               title={incognito ? "Incognito ON — click to turn off" : "Turn on Incognito mode"}
               className={cn("h-9 w-9 flex items-center justify-center rounded-full transition-colors",
-                incognito ? "bg-indigo-600 text-white" : "hover:opacity-80 app-text-muted"
+                incognito ? "bg-violet-600 text-white" : "hover:opacity-80 app-text-muted"
               )}>
               {incognito ? <EyeOff className="h-5 w-5" /> : <EyeOff className="h-5 w-5" />}
             </button>
@@ -544,7 +544,7 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
               <Settings className="h-5 w-5" />
             </Link>
             <Link href="/profile"
-              className="h-9 w-9 flex items-center justify-center rounded-full bg-indigo-600 font-bold text-white overflow-hidden flex-shrink-0 ml-1">
+              className="h-9 w-9 flex items-center justify-center rounded-full bg-violet-600 font-bold text-white overflow-hidden flex-shrink-0 ml-1">
               <img src={profile?.avatar_url || '/default-avatar.png'} alt="" className="w-full h-full object-cover" />
             </Link>
           </div>
@@ -562,7 +562,7 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
           <button key={tab} onClick={() => setActiveTab(tab)}
             className={cn(
               "flex flex-col items-center justify-center gap-0.5 flex-1 h-full transition-all relative",
-              activeTab === tab ? "text-indigo-500" : "app-text-muted"
+              activeTab === tab ? "text-violet-500" : "app-text-muted"
             )}>
             <div className="relative">
               {icon}
@@ -631,15 +631,15 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
 
                   <div className="mb-4">
                     <div className="flex items-center gap-2 px-2 py-2 mb-1">
-                      <UsersIcon className="h-4 w-4 text-indigo-500" />
+                      <UsersIcon className="h-4 w-4 text-violet-500" />
                       <p className="text-sm font-semibold app-text">Communities</p>
                     </div>
 
                     {profile?.role && (
                       <a href={`/community/${encodeURIComponent(profile.role)}`}
                         className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:opacity-80 transition-colors text-left">
-                        <div className="w-8 h-8 rounded-lg bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center flex-shrink-0">
-                          <GraduationCap className="h-4 w-4 text-indigo-500" />
+                        <div className="w-8 h-8 rounded-lg bg-violet-600/20 border border-violet-500/30 flex items-center justify-center flex-shrink-0">
+                          <GraduationCap className="h-4 w-4 text-violet-500" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-medium app-text truncate">{profile.role}</p>
@@ -662,7 +662,7 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
                     ))}
 
                     {subjectMemberships.length === 0 && (
-                      <a href="/subjects" className="flex items-center gap-2 px-3 py-2 text-xs app-text-muted hover:text-indigo-500 transition-colors">
+                      <a href="/subjects" className="flex items-center gap-2 px-3 py-2 text-xs app-text-muted hover:text-violet-500 transition-colors">
                         + Browse subject communities
                       </a>
                     )}
@@ -670,7 +670,7 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
 
                   <div className="border-t app-border pt-4">
                     <div className="flex items-center gap-2 px-2 py-2 mb-1">
-                      <Calendar className="h-4 w-4 text-indigo-500" />
+                      <Calendar className="h-4 w-4 text-violet-500" />
                       <p className="text-sm font-semibold app-text">Upcoming Events</p>
                     </div>
                     <div className="space-y-1">
@@ -719,13 +719,13 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
 
               {/* Incognito banner */}
               {incognito && (
-                <div className="flex items-center gap-3 bg-indigo-600/20 border border-indigo-500/40 rounded-2xl px-4 py-3 mb-4">
-                  <EyeOff className="h-5 w-5 text-indigo-400 flex-shrink-0" />
+                <div className="flex items-center gap-3 bg-violet-600/20 border border-violet-500/40 rounded-2xl px-4 py-3 mb-4">
+                  <EyeOff className="h-5 w-5 text-violet-400 flex-shrink-0" />
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-indigo-300">Incognito mode is ON</p>
-                    <p className="text-xs text-indigo-400/80">Your posts and replies appear as "Anonymous"</p>
+                    <p className="text-sm font-semibold text-violet-300">Incognito mode is ON</p>
+                    <p className="text-xs text-violet-400/80">Your posts and replies appear as "Anonymous"</p>
                   </div>
-                  <button onClick={toggleIncognito} className="text-xs text-indigo-400 hover:opacity-80 border border-indigo-500/40 px-3 py-1 rounded-full">
+                  <button onClick={toggleIncognito} className="text-xs text-violet-400 hover:opacity-80 border border-violet-500/40 px-3 py-1 rounded-full">
                     Turn off
                   </button>
                 </div>
@@ -733,7 +733,7 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
 
               <div className="app-surface rounded-2xl p-5 mb-6 border app-border">
                 <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center font-bold overflow-hidden flex-shrink-0">
+                  <div className="w-10 h-10 rounded-full bg-violet-600 flex items-center justify-center font-bold overflow-hidden flex-shrink-0">
                     {incognito
                       ? <EyeOff className="h-5 w-5 text-white" />
                       : <img src={profile?.avatar_url || '/default-avatar.png'} alt="" className="w-full h-full object-cover" />
@@ -745,7 +745,7 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
                       onChange={e => setNewPostContent(e.target.value)}
                       onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handlePost() } }}
                       placeholder="Share something with your network..."
-                      className="w-full app-input-bg app-text rounded-xl px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
+                      className="w-full app-input-bg app-text rounded-xl px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-violet-500"
                     />
                     <div className="flex items-center justify-between mt-2">
                       <MediaAttachment
@@ -758,7 +758,7 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
                         folder="posts"
                       />
                       <button onClick={handlePost} disabled={!newPostContent.trim() && !postMedia}
-                        className="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white px-4 py-2 rounded-full text-sm flex items-center gap-2">
+                        className="bg-violet-600 hover:bg-violet-700 disabled:opacity-50 text-white px-4 py-2 rounded-full text-sm flex items-center gap-2">
                         <Send className="h-4 w-4" />
                       </button>
                     </div>
@@ -780,7 +780,7 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
                           </div>
                         ) : (
                           <a href={`/user/${post.user_id}`}>
-                            <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center font-bold overflow-hidden flex-shrink-0 hover:opacity-80">
+                            <div className="w-10 h-10 rounded-full bg-violet-600 flex items-center justify-center font-bold overflow-hidden flex-shrink-0 hover:opacity-80">
                               <img src={post.profiles?.avatar_url || '/default-avatar.png'} alt="" className="w-full h-full object-cover" />
                             </div>
                           </a>
@@ -838,7 +838,7 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
                                 </div>
                               ) : (
                                 <a href={`/user/${reply.user_id}`}>
-                                  <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center font-bold overflow-hidden flex-shrink-0 hover:opacity-80">
+                                  <div className="w-8 h-8 rounded-full bg-violet-600 flex items-center justify-center font-bold overflow-hidden flex-shrink-0 hover:opacity-80">
                                     <img src={reply.profiles?.avatar_url || '/default-avatar.png'} alt="" className="w-full h-full object-cover" />
                                   </div>
                                 </a>
@@ -876,7 +876,7 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
                       {showReplyInput[post.id] && (
                         <div className="mt-3 pt-3 border-t app-border">
                           <div className="flex gap-2">
-                            <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center font-bold overflow-hidden flex-shrink-0">
+                            <div className="w-8 h-8 rounded-full bg-violet-600 flex items-center justify-center font-bold overflow-hidden flex-shrink-0">
                               <img src={profile?.avatar_url || '/default-avatar.png'} alt="" className="w-full h-full object-cover" />
                             </div>
                             <input
@@ -884,10 +884,10 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
                               onChange={e => setReplyInputs(prev => ({ ...prev, [post.id]: e.target.value }))}
                               onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleReply(post.id) } }}
                               placeholder="Write a reply..."
-                              className="flex-1 app-input-bg app-text rounded-full px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
+                              className="flex-1 app-input-bg app-text rounded-full px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-violet-500"
                             />
                             <button onClick={() => handleReply(post.id)} disabled={!replyInputs[post.id]?.trim()}
-                              className="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white px-3 py-2 rounded-full text-sm">
+                              className="bg-violet-600 hover:bg-violet-700 disabled:opacity-50 text-white px-3 py-2 rounded-full text-sm">
                               <Send className="h-4 w-4" />
                             </button>
                           </div>
@@ -911,7 +911,7 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
                   <div key={friend.id} className="app-surface rounded-xl p-4 border app-border flex items-center gap-3">
                     <div className="relative">
                       <a href={`/user/${friend.id}`}>
-                        <div className="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center font-bold overflow-hidden hover:opacity-80">
+                        <div className="w-12 h-12 rounded-full bg-violet-600 flex items-center justify-center font-bold overflow-hidden hover:opacity-80">
                           <img src={friend.avatar_url || '/default-avatar.png'} alt="" className="w-full h-full object-cover" />
                         </div>
                       </a>
@@ -958,7 +958,7 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
                     }}
                     className="flex items-center gap-3 app-surface rounded-xl p-4 border app-border hover:opacity-80 transition-opacity">
                     <div className="relative flex-shrink-0">
-                      <div className="w-12 h-12 rounded-full bg-indigo-600 overflow-hidden">
+                      <div className="w-12 h-12 rounded-full bg-violet-600 overflow-hidden">
                         <img src={friend.avatar_url || '/default-avatar.png'} alt="" className="w-full h-full object-cover" />
                       </div>
                       <span className="absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full bg-green-500 ring-2 ring-zinc-900" />
@@ -974,7 +974,7 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
                           <span className="h-2 w-2 rounded-full bg-red-500 flex-shrink-0" />
                         )}
                       </div>
-                      <p className={cn("text-xs truncate", unreadSenders.has(friend.id) ? "text-indigo-400 font-medium" : "app-text-muted")}>
+                      <p className={cn("text-xs truncate", unreadSenders.has(friend.id) ? "text-violet-400 font-medium" : "app-text-muted")}>
                         {unreadSenders.has(friend.id) ? "New message" : (friend.bio ?? "Tap to message")}
                       </p>
                     </div>
@@ -993,7 +993,7 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
               <div className="relative mb-6 max-w-md">
                 <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 app-text-muted" />
                 <input placeholder="Search by name or bio..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full app-surface border app-border app-text rounded-xl pl-10 pr-4 py-2 outline-none focus:ring-2 focus:ring-indigo-500" />
+                  className="w-full app-surface border app-border app-text rounded-xl pl-10 pr-4 py-2 outline-none focus:ring-2 focus:ring-violet-500" />
               </div>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {filteredProfiles.map((p) => <ConnectionCard key={p.id} p={p} />)}
@@ -1009,13 +1009,13 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
               <div className="app-surface rounded-2xl border app-border overflow-hidden mb-8">
                 <div className="px-6 py-4 border-b app-border flex items-center justify-between">
                   <h2 className="text-lg font-semibold app-text">Your Communities</h2>
-                  <a href="/subjects" className="text-indigo-500 hover:opacity-80 text-sm font-medium">Manage subjects →</a>
+                  <a href="/subjects" className="text-violet-500 hover:opacity-80 text-sm font-medium">Manage subjects →</a>
                 </div>
                 <div className="p-6 space-y-5">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center">
-                        <GraduationCap className="h-6 w-6 text-indigo-500" />
+                      <div className="w-12 h-12 rounded-xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center">
+                        <GraduationCap className="h-6 w-6 text-violet-500" />
                       </div>
                       <div>
                         <p className="font-semibold app-text">{userCommunity}</p>
@@ -1023,7 +1023,7 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
                       </div>
                     </div>
                     <a href={`/community/${encodeURIComponent(userCommunity)}`}
-                      className="text-xs text-indigo-500 hover:opacity-80 app-input-bg px-3 py-1 rounded-full border border-indigo-500/30">
+                      className="text-xs text-violet-500 hover:opacity-80 app-input-bg px-3 py-1 rounded-full border border-violet-500/30">
                       Open →
                     </a>
                   </div>
@@ -1052,7 +1052,7 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
                   {subjectMemberships.length === 0 && (
                     <div className="border-t app-border pt-5">
                       <p className="app-text-muted text-sm">No subject communities joined yet.</p>
-                      <a href="/subjects" className="text-indigo-500 hover:opacity-80 text-sm mt-1 inline-block">Browse subjects →</a>
+                      <a href="/subjects" className="text-violet-500 hover:opacity-80 text-sm mt-1 inline-block">Browse subjects →</a>
                     </div>
                   )}
                 </div>
@@ -1063,12 +1063,12 @@ export function DashboardClient({ user, profile, profiles, connections: initialC
                   {Object.entries(communities).map(([role, members]) => (
                     <a key={role} href={`/community/${encodeURIComponent(role)}`} className={cn(
                       "rounded-xl p-4 border transition-all block",
-                      role === userCommunity ? "bg-indigo-600/10 border-indigo-500/30" : "app-surface app-border hover:opacity-90"
+                      role === userCommunity ? "bg-violet-600/10 border-violet-500/30" : "app-surface app-border hover:opacity-90"
                     )}>
                       <div className="flex items-center gap-3 mb-2">
-                        <GraduationCap className={cn("h-5 w-5", role === userCommunity ? "text-indigo-500" : "app-text-muted")} />
+                        <GraduationCap className={cn("h-5 w-5", role === userCommunity ? "text-violet-500" : "app-text-muted")} />
                         <h3 className="font-semibold text-sm app-text">{role}</h3>
-                        {role === userCommunity && <span className="text-xs text-indigo-500 ml-auto">Yours</span>}
+                        {role === userCommunity && <span className="text-xs text-violet-500 ml-auto">Yours</span>}
                       </div>
                       <p className="app-text-muted text-xs">{members.length} {members.length === 1 ? "member" : "members"}</p>
                     </a>

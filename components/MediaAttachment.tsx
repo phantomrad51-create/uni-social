@@ -65,7 +65,7 @@ export function MediaAttachment({
         </div>
       ) : (
         <button onClick={() => fileRef.current?.click()} disabled={uploading}
-          className="flex items-center gap-1.5 text-xs app-text-muted hover:text-indigo-400 transition-colors mt-1">
+          className="flex items-center gap-1.5 text-xs app-text-muted hover:text-violet-400 transition-colors mt-1">
           <ImageIcon className="h-4 w-4" />
           {uploading ? "Uploading..." : "Photo / Video"}
         </button>

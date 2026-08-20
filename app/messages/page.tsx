@@ -13,7 +13,7 @@ export default async function MessagesIndexPage() {
   return (
     <div className="min-h-screen w-full bg-zinc-950 text-white flex flex-col">
       <div className="flex-shrink-0 bg-zinc-900 px-4 py-3 flex items-center gap-3 border-b border-zinc-800">
-        <a href="/dashboard" className="text-indigo-400 font-bold">← Sunway Connect</a>
+        <a href="/dashboard" className="text-violet-400 font-bold">← Sunway Connect</a>
         <h1 className="font-semibold text-white text-lg ml-2">Messages</h1>
       </div>
       <div className="flex-1 overflow-y-auto divide-y divide-zinc-800">
@@ -24,7 +24,7 @@ export default async function MessagesIndexPage() {
           const latest = getLatest(person.id)
           return (
             <a key={person.id} href={`/messages/${person.id}`} className="flex items-center gap-4 px-4 py-3 hover:bg-zinc-900 transition-colors">
-              <div className="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center font-bold overflow-hidden flex-shrink-0">
+              <div className="w-12 h-12 rounded-full bg-violet-600 flex items-center justify-center font-bold overflow-hidden flex-shrink-0">
                 {person.avatar_url ? <img src={person.avatar_url} alt="" className="w-full h-full object-cover" /> : (person.full_name?.[0] ?? "S")}
               </div>
               <div className="flex-1 min-w-0">

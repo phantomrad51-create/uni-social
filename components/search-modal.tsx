@@ -145,7 +145,7 @@ export function SearchModal({ open, onClose, currentUserId }: SearchModalProps) 
   }
 
   const typeColors: Record<string, string> = {
-    user: "text-indigo-400",
+    user: "text-violet-400",
     post: "text-emerald-400",
     community: "text-violet-400",
     event: "text-amber-400",
@@ -173,7 +173,7 @@ export function SearchModal({ open, onClose, currentUserId }: SearchModalProps) 
             className="flex-1 bg-transparent app-text text-sm outline-none placeholder:app-text-muted"
           />
           {loading && (
-            <div className="h-4 w-4 rounded-full border-2 border-indigo-500 border-t-transparent animate-spin flex-shrink-0" />
+            <div className="h-4 w-4 rounded-full border-2 border-violet-500 border-t-transparent animate-spin flex-shrink-0" />
           )}
           <button onClick={onClose} className="app-text-muted hover:opacity-80 flex-shrink-0">
             <X className="h-4 w-4" />
@@ -189,11 +189,11 @@ export function SearchModal({ open, onClose, currentUserId }: SearchModalProps) 
                 onClick={onClose}
                 className={cn(
                   "flex items-center gap-3 px-4 py-2.5 transition-colors",
-                  i === selected ? "bg-indigo-600/20" : "hover:opacity-80"
+                  i === selected ? "bg-violet-600/20" : "hover:opacity-80"
                 )}
               >
                 {result.type === "user" && result.avatar_url ? (
-                  <div className="w-8 h-8 rounded-full bg-indigo-600 overflow-hidden flex-shrink-0">
+                  <div className="w-8 h-8 rounded-full bg-violet-600 overflow-hidden flex-shrink-0">
                     <img src={result.avatar_url} alt="" className="w-full h-full object-cover" />
                   </div>
                 ) : (
@@ -239,7 +239,7 @@ export function SearchModal({ open, onClose, currentUserId }: SearchModalProps) 
                   onClick={onClose}
                   className="flex items-center gap-3 px-3 py-2 rounded-lg hover:opacity-80 transition-colors"
                 >
-                  <div className="w-7 h-7 rounded-lg app-input-bg flex items-center justify-center text-indigo-400">
+                  <div className="w-7 h-7 rounded-lg app-input-bg flex items-center justify-center text-violet-400">
                     {link.icon}
                   </div>
                   <span className="text-sm app-text">{link.label}</span>

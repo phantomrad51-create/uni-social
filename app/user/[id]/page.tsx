@@ -5,11 +5,11 @@ import { PUBLIC_COMMUNITIES } from "@/lib/communities";
 export const dynamic = 'force-dynamic';
 
 const PROFILE_THEMES: Record<string, { from: string; to: string }> = {
-  default:  { from: "from-indigo-900/50", to: "to-zinc-800" },
+  default:  { from: "from-violet-900/50", to: "to-zinc-800" },
   ocean:    { from: "from-blue-900/60",   to: "to-cyan-800/60" },
   sunset:   { from: "from-orange-900/60", to: "to-pink-800/60" },
   forest:   { from: "from-green-900/60",  to: "to-emerald-800/60" },
-  galaxy:   { from: "from-purple-900/60", to: "to-indigo-800/60" },
+  galaxy:   { from: "from-purple-900/60", to: "to-violet-800/60" },
   fire:     { from: "from-red-900/60",    to: "to-orange-800/60" },
   midnight: { from: "from-zinc-900",      to: "to-zinc-700" },
   rose:     { from: "from-rose-900/60",   to: "to-pink-700/60" },
@@ -69,7 +69,7 @@ export default async function UserProfilePage({ params }: { params: Promise<{ id
   return (
     <div className="min-h-screen app-bg app-text">
       <div className="app-surface border-b app-border px-6 py-4 flex items-center justify-between">
-        <a href="/dashboard" className="text-indigo-500 font-bold text-lg">Sunway Connect</a>
+        <a href="/dashboard" className="text-violet-500 font-bold text-lg">Sunway Connect</a>
         <a href="/dashboard" className="app-text-muted hover:opacity-80 text-sm">← Back</a>
       </div>
 
@@ -80,7 +80,7 @@ export default async function UserProfilePage({ params }: { params: Promise<{ id
           <div className={`h-32 bg-gradient-to-r ${theme.from} ${theme.to}`} />
           <div className="px-6 pb-6">
             <div className="flex items-end justify-between -mt-12 mb-4">
-              <div className="w-24 h-24 rounded-full bg-indigo-600 flex items-center justify-center text-3xl font-bold overflow-hidden ring-4 ring-zinc-900">
+              <div className="w-24 h-24 rounded-full bg-violet-600 flex items-center justify-center text-3xl font-bold overflow-hidden ring-4 ring-zinc-900">
                 {profile.avatar_url ? <img src={profile.avatar_url} alt="" className="w-full h-full object-cover" /> : initial}
               </div>
               <div className="flex gap-2">
@@ -91,7 +91,7 @@ export default async function UserProfilePage({ params }: { params: Promise<{ id
                 )}
                 {!isOwnProfile && connStatus === "none" && (
                   <form method="POST" action={`/api/connections/send?to=${id}`}>
-                    <button type="submit" className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm px-4 py-2 rounded-lg">Connect</button>
+                    <button type="submit" className="bg-violet-600 hover:bg-violet-700 text-white text-sm px-4 py-2 rounded-lg">Connect</button>
                   </form>
                 )}
                 {!isOwnProfile && connStatus === "pending_sent" && (
@@ -122,7 +122,7 @@ export default async function UserProfilePage({ params }: { params: Promise<{ id
                   <a key={platform.key}
                     href={platform.url(socials[platform.key])}
                     target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 app-input-bg border app-border px-3 py-1.5 rounded-full text-xs app-text hover:border-indigo-500/50 transition-colors">
+                    className="flex items-center gap-1.5 app-input-bg border app-border px-3 py-1.5 rounded-full text-xs app-text hover:border-violet-500/50 transition-colors">
                     <span>{platform.icon}</span>
                     <span>{socials[platform.key]}</span>
                   </a>
@@ -154,7 +154,7 @@ export default async function UserProfilePage({ params }: { params: Promise<{ id
             <div className="flex flex-wrap gap-2">
               {hobbyItems.map(hobby => hobby && (
                 <a key={hobby.slug} href={`/community/${hobby.slug}`}
-                  className="flex items-center gap-1.5 app-input-bg border app-border px-3 py-1.5 rounded-full text-sm app-text hover:border-indigo-500/50 transition-colors">
+                  className="flex items-center gap-1.5 app-input-bg border app-border px-3 py-1.5 rounded-full text-sm app-text hover:border-violet-500/50 transition-colors">
                   <span>{hobby.emoji}</span>
                   <span>{hobby.name}</span>
                 </a>
@@ -169,7 +169,7 @@ export default async function UserProfilePage({ params }: { params: Promise<{ id
           <div className="space-y-3">
             {profile.role && (
               <div className="flex items-center gap-3 p-3 app-input-bg rounded-xl border app-border">
-                <div className="w-10 h-10 rounded-lg bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-lg">🎓</div>
+                <div className="w-10 h-10 rounded-lg bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-lg">🎓</div>
                 <div>
                   <p className="font-medium text-sm app-text">{profile.role}</p>
                   <p className="text-xs app-text-muted">Program</p>
@@ -198,7 +198,7 @@ export default async function UserProfilePage({ params }: { params: Promise<{ id
             {rawPosts?.map(post => (
               <div key={post.id} className="app-surface rounded-2xl p-5 border app-border">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center font-bold overflow-hidden flex-shrink-0">
+                  <div className="w-10 h-10 rounded-full bg-violet-600 flex items-center justify-center font-bold overflow-hidden flex-shrink-0">
                     {profile.avatar_url ? <img src={profile.avatar_url} alt="" className="w-full h-full object-cover" /> : initial}
                   </div>
                   <div>

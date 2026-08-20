@@ -33,7 +33,7 @@ const notifIcon = (type: Notification["type"]) => {
   switch (type) {
     case "like": return <Heart className="h-3.5 w-3.5 text-red-400" />
     case "comment": return <MessageCircle className="h-3.5 w-3.5 text-blue-400" />
-    case "message": return <MessageCircle className="h-3.5 w-3.5 text-indigo-400" />
+    case "message": return <MessageCircle className="h-3.5 w-3.5 text-violet-400" />
     case "friend_request": return <UserPlus className="h-3.5 w-3.5 text-green-400" />
     case "new_post": return <FileText className="h-3.5 w-3.5 text-yellow-400" />
   }
@@ -193,7 +193,7 @@ export default function NotificationsPanel({ userId }: NotificationsPanelProps) 
               {hasUnread && (
                 <button
                   onClick={markAllRead}
-                  className="text-xs text-indigo-400 hover:opacity-80 px-2 py-1 rounded-lg flex items-center gap-1"
+                  className="text-xs text-violet-400 hover:opacity-80 px-2 py-1 rounded-lg flex items-center gap-1"
                 >
                   <Check className="h-3 w-3" />
                   Mark all read
@@ -223,12 +223,12 @@ export default function NotificationsPanel({ userId }: NotificationsPanelProps) 
                 onClick={() => markRead(n.id)}
                 className={cn(
                   "flex items-start gap-3 px-4 py-3 hover:opacity-80 transition-opacity border-b app-border last:border-b-0",
-                  !n.read && "bg-indigo-500/5"
+                  !n.read && "bg-violet-500/5"
                 )}
               >
                 {/* Avatar */}
                 <div className="relative flex-shrink-0 mt-0.5">
-                  <div className="w-9 h-9 rounded-full bg-indigo-600 overflow-hidden flex items-center justify-center text-sm font-bold">
+                  <div className="w-9 h-9 rounded-full bg-violet-600 overflow-hidden flex items-center justify-center text-sm font-bold">
                     {n.from_profile?.avatar_url
                       ? <img src={n.from_profile.avatar_url} alt="" className="w-full h-full object-cover" />
                       : <img src="/default-avatar.png" alt="" className="w-full h-full object-cover" />
@@ -247,7 +247,7 @@ export default function NotificationsPanel({ userId }: NotificationsPanelProps) 
 
                 {/* Unread dot */}
                 {!n.read && (
-                  <div className="w-2 h-2 rounded-full bg-indigo-500 flex-shrink-0 mt-2" />
+                  <div className="w-2 h-2 rounded-full bg-violet-500 flex-shrink-0 mt-2" />
                 )}
               </a>
             ))}
@@ -255,7 +255,7 @@ export default function NotificationsPanel({ userId }: NotificationsPanelProps) 
 
           {/* Footer */}
           <div className="px-4 py-3 border-t app-border">
-            <a href="/settings?tab=notifications" className="text-xs text-indigo-400 hover:opacity-80">
+            <a href="/settings?tab=notifications" className="text-xs text-violet-400 hover:opacity-80">
               Manage notification settings →
             </a>
           </div>

@@ -103,7 +103,7 @@ interface CommunityClientProps {
 const Avatar = ({ profile, size = "sm" }: { profile: { full_name?: string | null; avatar_url?: string | null } | null; size?: "sm" | "md" | "lg" }) => {
   const sizes = { sm: "w-8 h-8 text-sm", md: "w-10 h-10 text-base", lg: "w-12 h-12 text-lg" }
   return (
-    <div className={cn("rounded-full bg-indigo-600 flex items-center justify-center font-bold text-white overflow-hidden flex-shrink-0", sizes[size])}>
+    <div className={cn("rounded-full bg-violet-600 flex items-center justify-center font-bold text-white overflow-hidden flex-shrink-0", sizes[size])}>
       <img src={profile?.avatar_url || '/default-avatar.png'} alt="" className="w-full h-full object-cover" />
     </div>
   )
@@ -354,7 +354,7 @@ export default function CommunityClient({
             ].map(tab => (
               <button key={tab.id} onClick={() => setSettingsTab(tab.id as any)}
                 className={cn("w-full text-left px-3 py-2 rounded-lg text-sm transition-colors",
-                  settingsTab === tab.id ? "bg-indigo-600 text-white" : "app-text-muted hover:opacity-80")}>
+                  settingsTab === tab.id ? "bg-violet-600 text-white" : "app-text-muted hover:opacity-80")}>
                 {tab.label}
               </button>
             ))}
@@ -374,17 +374,17 @@ export default function CommunityClient({
                 <div>
                   <h3 className="text-sm font-semibold app-text mb-1">Description</h3>
                   <textarea value={communityDesc} onChange={e => setCommunityDesc(e.target.value)} rows={3}
-                    className="w-full app-input-bg app-text border app-border rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
+                    className="w-full app-input-bg app-text border app-border rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-violet-500 resize-none"
                     placeholder="Describe this community..." />
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold app-text mb-1">Rules</h3>
                   <textarea value={communityRules} onChange={e => setCommunityRules(e.target.value)} rows={4}
-                    className="w-full app-input-bg app-text border app-border rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
+                    className="w-full app-input-bg app-text border app-border rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-violet-500 resize-none"
                     placeholder="1. Be respectful&#10;2. No spam&#10;3. Stay on topic" />
                 </div>
                 <button onClick={() => { setSavingSettings(true); setTimeout(() => setSavingSettings(false), 1000) }}
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-xl text-sm font-medium">
+                  className="bg-violet-600 hover:bg-violet-700 text-white px-5 py-2 rounded-xl text-sm font-medium">
                   {savingSettings ? "Saved!" : "Save Changes"}
                 </button>
               </div>
@@ -402,7 +402,7 @@ export default function CommunityClient({
                         <input autoFocus value={editingChannelName}
                           onChange={e => setEditingChannelName(e.target.value)}
                           onKeyDown={e => { if (e.key === "Enter") renameChannel(ch.id); if (e.key === "Escape") setEditingChannelId(null) }}
-                          className="flex-1 bg-transparent app-text text-sm outline-none border-b border-indigo-500" />
+                          className="flex-1 bg-transparent app-text text-sm outline-none border-b border-violet-500" />
                       ) : (
                         <span className="flex-1 text-sm app-text">{ch.name}</span>
                       )}
@@ -436,19 +436,19 @@ export default function CommunityClient({
                       {(["chat", "forum", "notes"] as const).map(type => (
                         <button key={type} onClick={() => setNewChannelType(type)}
                           className={cn("px-3 py-1 rounded-full text-xs capitalize border transition-colors",
-                            newChannelType === type ? "bg-indigo-600 text-white border-indigo-600" : "app-text-muted border-transparent app-surface")}>
+                            newChannelType === type ? "bg-violet-600 text-white border-violet-600" : "app-text-muted border-transparent app-surface")}>
                           {type}
                         </button>
                       ))}
                     </div>
                     <div className="flex gap-2">
-                      <button onClick={addChannel} className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-1.5 rounded-lg text-sm">Add</button>
+                      <button onClick={addChannel} className="bg-violet-600 hover:bg-violet-700 text-white px-4 py-1.5 rounded-lg text-sm">Add</button>
                       <button onClick={() => setShowAddChannel(false)} className="app-text-muted hover:opacity-80 px-4 py-1.5 rounded-lg text-sm border app-border">Cancel</button>
                     </div>
                   </div>
                 ) : (
                   <button onClick={() => setShowAddChannel(true)}
-                    className="flex items-center gap-2 text-indigo-400 hover:opacity-80 text-sm">
+                    className="flex items-center gap-2 text-violet-400 hover:opacity-80 text-sm">
                     <Plus className="h-4 w-4" /> Add Channel
                   </button>
                 )}
@@ -470,7 +470,7 @@ export default function CommunityClient({
                         </div>
                         <p className="text-xs app-text-muted">{member.badge_role ?? "Member"}</p>
                       </div>
-                      <a href="/admin" className="text-xs text-indigo-400 hover:underline">
+                      <a href="/admin" className="text-xs text-violet-400 hover:underline">
                         Manage
                       </a>
                     </div>
@@ -498,8 +498,8 @@ export default function CommunityClient({
           <a href="/dashboard" className="app-text-muted hover:opacity-80">
             <ChevronLeft className="h-5 w-5" />
           </a>
-          <div className="w-8 h-8 rounded-lg bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center">
-            {community.emoji ? <span className="text-lg">{community.emoji}</span> : <Hash className="h-4 w-4 text-indigo-500" />}
+          <div className="w-8 h-8 rounded-lg bg-violet-600/20 border border-violet-500/30 flex items-center justify-center">
+            {community.emoji ? <span className="text-lg">{community.emoji}</span> : <Hash className="h-4 w-4 text-violet-500" />}
           </div>
           <div>
             <p className="font-semibold text-sm app-text leading-none">{community.name}</p>
@@ -512,7 +512,7 @@ export default function CommunityClient({
           <button onClick={toggleIncognito}
             title={incognito ? "Incognito ON — click to turn off" : "Turn on Incognito mode"}
             className={cn("h-8 w-8 flex items-center justify-center rounded-lg transition-colors",
-              incognito ? "bg-indigo-600 text-white" : "hover:opacity-80 app-text-muted"
+              incognito ? "bg-violet-600 text-white" : "hover:opacity-80 app-text-muted"
             )}>
             <EyeOff className="h-4 w-4" />
           </button>
@@ -540,7 +540,7 @@ export default function CommunityClient({
             <p className="text-xs app-text-muted uppercase tracking-wider font-semibold px-2">Channels</p>
             {canModerate && (
               <button onClick={() => { setSettingsOpen(true); setSettingsTab("channels") }}
-                className="app-text-muted hover:text-indigo-400 transition-colors" title="Manage channels">
+                className="app-text-muted hover:text-violet-400 transition-colors" title="Manage channels">
                 <Plus className="h-4 w-4" />
               </button>
             )}
@@ -550,7 +550,7 @@ export default function CommunityClient({
               <button key={ch.id} onClick={() => setActiveChannelId(ch.id)}
                 className={cn(
                   "w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors",
-                  activeChannelId === ch.id ? "bg-indigo-600/20 text-indigo-400" : "app-text-muted hover:opacity-80"
+                  activeChannelId === ch.id ? "bg-violet-600/20 text-violet-400" : "app-text-muted hover:opacity-80"
                 )}>
                 {channelIcon(ch.type)}
                 <span className="truncate">{ch.name}</span>
@@ -562,7 +562,7 @@ export default function CommunityClient({
               <Avatar profile={profile} size="sm" />
               <div className="flex-1 min-w-0">
                 <p className="text-xs app-text truncate">{profile?.full_name ?? "You"}</p>
-                {profile?.badge_role && <p className="text-xs text-indigo-400 truncate">{profile.badge_role}</p>}
+                {profile?.badge_role && <p className="text-xs text-violet-400 truncate">{profile.badge_role}</p>}
               </div>
             </div>
           </div>
@@ -573,7 +573,7 @@ export default function CommunityClient({
           {channels.map(ch => (
             <button key={ch.id} onClick={() => setActiveChannelId(ch.id)}
               className={cn("flex-1 flex flex-col items-center gap-1 py-2 text-xs transition-colors min-w-0 px-1",
-                activeChannelId === ch.id ? "text-indigo-400" : "app-text-muted")}>
+                activeChannelId === ch.id ? "text-violet-400" : "app-text-muted")}>
               {channelIcon(ch.type)}
               <span className="truncate w-full text-center">{ch.name}</span>
             </button>
@@ -585,10 +585,10 @@ export default function CommunityClient({
 
           {/* Incognito banner */}
           {incognito && (
-            <div className="flex-shrink-0 flex items-center gap-2 bg-indigo-600/20 border-b border-indigo-500/30 px-4 py-2">
-              <EyeOff className="h-4 w-4 text-indigo-400 flex-shrink-0" />
-              <p className="text-xs text-indigo-300 flex-1">Incognito ON — posting as Anonymous</p>
-              <button onClick={toggleIncognito} className="text-xs text-indigo-400 hover:opacity-80">Turn off</button>
+            <div className="flex-shrink-0 flex items-center gap-2 bg-violet-600/20 border-b border-violet-500/30 px-4 py-2">
+              <EyeOff className="h-4 w-4 text-violet-400 flex-shrink-0" />
+              <p className="text-xs text-violet-300 flex-1">Incognito ON — posting as Anonymous</p>
+              <button onClick={toggleIncognito} className="text-xs text-violet-400 hover:opacity-80">Turn off</button>
             </div>
           )}
 
@@ -644,9 +644,9 @@ export default function CommunityClient({
                   <input value={chatInput} onChange={e => setChatInput(e.target.value)}
                     onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendChat() } }}
                     placeholder={`Message #${activeChannel.name.toLowerCase()}`}
-                    className="flex-1 app-input-bg app-text rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500" />
+                    className="flex-1 app-input-bg app-text rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-violet-500" />
                   <button onClick={sendChat} disabled={!chatInput.trim() && !chatMedia}
-                    className="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white px-4 py-2 rounded-xl text-sm flex items-center gap-2">
+                    className="bg-violet-600 hover:bg-violet-700 disabled:opacity-50 text-white px-4 py-2 rounded-xl text-sm flex items-center gap-2">
                     <Send className="h-4 w-4" />
                   </button>
                 </div>
@@ -728,9 +728,9 @@ export default function CommunityClient({
                         <input value={replyInput} onChange={e => setReplyInput(e.target.value)}
                           onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendReply(selectedPost.id) } }}
                           placeholder="Write a reply..."
-                          className="flex-1 app-input-bg app-text rounded-xl px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500" />
+                          className="flex-1 app-input-bg app-text rounded-xl px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-violet-500" />
                         <button onClick={() => sendReply(selectedPost.id)} disabled={!replyInput.trim() && !replyMedia}
-                          className="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white px-4 py-2 rounded-xl text-sm">
+                          className="bg-violet-600 hover:bg-violet-700 disabled:opacity-50 text-white px-4 py-2 rounded-xl text-sm">
                           <Send className="h-4 w-4" />
                         </button>
                       </div>
@@ -743,7 +743,7 @@ export default function CommunityClient({
                   <div className="flex items-center justify-between mb-4">
                     <h2 className="text-lg font-bold app-text">{activeChannel.name}</h2>
                     <button onClick={() => setShowNewPost(true)}
-                      className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm px-4 py-2 rounded-lg flex items-center gap-2">
+                      className="bg-violet-600 hover:bg-violet-700 text-white text-sm px-4 py-2 rounded-lg flex items-center gap-2">
                       <Plus className="h-4 w-4" /> New Post
                     </button>
                   </div>
@@ -751,20 +751,20 @@ export default function CommunityClient({
                     <div className="app-surface rounded-xl p-4 border app-border mb-4">
                       <p className="font-semibold app-text mb-3">New Post</p>
                       <input value={newPostTitle} onChange={e => setNewPostTitle(e.target.value)} placeholder="Title"
-                        className="w-full app-input-bg app-text rounded-lg px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500 mb-2" />
+                        className="w-full app-input-bg app-text rounded-lg px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-violet-500 mb-2" />
                       <textarea value={newPostContent} onChange={e => setNewPostContent(e.target.value)} placeholder="What's on your mind?" rows={4}
-                        className="w-full app-input-bg app-text rounded-lg px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500 mb-2 resize-none" />
+                        className="w-full app-input-bg app-text rounded-lg px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-violet-500 mb-2 resize-none" />
                       <MediaAttachment current={newPostMedia} onAttach={setNewPostMedia} onRemove={() => setNewPostMedia(null)} uploading={newPostMediaUploading} setUploading={setNewPostMediaUploading} bucket="post-media" folder="community" />
                       <div className="flex gap-2 justify-end mt-3">
                         <button onClick={() => setShowNewPost(false)} className="text-sm px-4 py-2 rounded-lg border app-border app-text-muted hover:opacity-80">Cancel</button>
                         <button onClick={createPost} disabled={!newPostTitle.trim() || !newPostContent.trim()}
-                          className="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white text-sm px-4 py-2 rounded-lg">Post</button>
+                          className="bg-violet-600 hover:bg-violet-700 disabled:opacity-50 text-white text-sm px-4 py-2 rounded-lg">Post</button>
                       </div>
                     </div>
                   )}
                   <div className="space-y-3">
                     {forumPosts.map(post => (
-                      <div key={post.id} className={cn("app-surface rounded-xl p-4 border app-border cursor-pointer hover:border-indigo-500/50 transition-all group", post.id.startsWith("temp-") && "opacity-60")}>
+                      <div key={post.id} className={cn("app-surface rounded-xl p-4 border app-border cursor-pointer hover:border-violet-500/50 transition-all group", post.id.startsWith("temp-") && "opacity-60")}>
                         <div className="flex items-start justify-between">
                           <div className="flex-1" onClick={() => setSelectedPost(post)}>
                             <div className="flex items-center gap-3 mb-2">
@@ -846,7 +846,7 @@ export default function CommunityClient({
                   <div className="flex items-center justify-between mb-4">
                     <h2 className="text-lg font-bold app-text">{activeChannel.name}</h2>
                     <button onClick={() => setShowNewNote(true)}
-                      className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm px-4 py-2 rounded-lg flex items-center gap-2">
+                      className="bg-violet-600 hover:bg-violet-700 text-white text-sm px-4 py-2 rounded-lg flex items-center gap-2">
                       <Plus className="h-4 w-4" /> Share Notes
                     </button>
                   </div>
@@ -854,22 +854,22 @@ export default function CommunityClient({
                     <div className="app-surface rounded-xl p-4 border app-border mb-4">
                       <p className="font-semibold app-text mb-3">Share Notes</p>
                       <input value={newNoteTitle} onChange={e => setNewNoteTitle(e.target.value)} placeholder="Title (e.g. Chapter 3 Summary)"
-                        className="w-full app-input-bg app-text rounded-lg px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500 mb-2" />
+                        className="w-full app-input-bg app-text rounded-lg px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-violet-500 mb-2" />
                       <textarea value={newNoteContent} onChange={e => setNewNoteContent(e.target.value)} placeholder="Paste your notes here..." rows={8}
-                        className="w-full app-input-bg app-text rounded-lg px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500 mb-2 resize-none font-mono" />
+                        className="w-full app-input-bg app-text rounded-lg px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-violet-500 mb-2 resize-none font-mono" />
                       <MediaAttachment current={newNoteMedia} onAttach={setNewNoteMedia} onRemove={() => setNewNoteMedia(null)} uploading={newNoteMediaUploading} setUploading={setNewNoteMediaUploading} bucket="post-media" folder="community" />
                       <div className="flex gap-2 justify-end mt-3">
                         <button onClick={() => setShowNewNote(false)} className="text-sm px-4 py-2 rounded-lg border app-border app-text-muted hover:opacity-80">Cancel</button>
                         <button onClick={createNote} disabled={!newNoteTitle.trim() || !newNoteContent.trim()}
-                          className="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white text-sm px-4 py-2 rounded-lg">Share</button>
+                          className="bg-violet-600 hover:bg-violet-700 disabled:opacity-50 text-white text-sm px-4 py-2 rounded-lg">Share</button>
                       </div>
                     </div>
                   )}
                   <div className="grid gap-3 sm:grid-cols-2">
                     {notes.map(note => (
-                      <div key={note.id} className={cn("app-surface rounded-xl p-4 border app-border cursor-pointer hover:border-indigo-500/50 transition-all group", note.id.startsWith("temp-") && "opacity-60")}>
+                      <div key={note.id} className={cn("app-surface rounded-xl p-4 border app-border cursor-pointer hover:border-violet-500/50 transition-all group", note.id.startsWith("temp-") && "opacity-60")}>
                         <div className="flex items-start gap-3">
-                          <FileText className="h-5 w-5 text-indigo-500 flex-shrink-0 mt-0.5" />
+                          <FileText className="h-5 w-5 text-violet-500 flex-shrink-0 mt-0.5" />
                           <div className="flex-1 min-w-0" onClick={() => setSelectedNote(note)}>
                             <h3 className="font-semibold app-text text-sm truncate">{note.title}</h3>
                             <p className="text-xs app-text-muted mt-0.5">{note.anonymous ? "Anonymous" : (note.profiles?.full_name ?? "Student")} • {formatTime(note.created_at)}</p>
@@ -910,7 +910,7 @@ export default function CommunityClient({
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm app-text truncate">{member.full_name ?? "Student"}</p>
-                    {member.badge_role && <p className="text-xs text-indigo-400 truncate">{member.badge_role}</p>}
+                    {member.badge_role && <p className="text-xs text-violet-400 truncate">{member.badge_role}</p>}
                   </div>
                   <BadgeIcon role={member.badge_role} />
                 </a>

@@ -173,7 +173,7 @@ export default function MessagesClient({
         </a>
         <div className="flex items-center gap-2 flex-1 min-w-0">
           <a href={`/user/${otherId}`}>
-            <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-indigo-600 hover:opacity-80 transition-opacity">
+            <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-violet-600 hover:opacity-80 transition-opacity">
               <img src={otherProfile?.avatar_url || "/default-avatar.png"} alt="" className="w-full h-full object-cover" />
             </div>
           </a>
@@ -210,7 +210,7 @@ export default function MessagesClient({
               {msg.content && (
                 <div className={`max-w-[65%] px-4 py-2 rounded-2xl text-sm break-words ${
                   isMine
-                    ? "bg-indigo-600 text-white rounded-br-sm"
+                    ? "bg-violet-600 text-white rounded-br-sm"
                     : "app-input-bg app-text rounded-bl-sm"
                 }`}>
                   {msg.content}
@@ -244,7 +244,7 @@ export default function MessagesClient({
           {/* Image pick button */}
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="flex-shrink-0 app-text-muted hover:text-indigo-400 transition-colors p-2"
+            className="flex-shrink-0 app-text-muted hover:text-violet-400 transition-colors p-2"
           >
             <ImageIcon className="h-5 w-5" />
           </button>
@@ -262,13 +262,13 @@ export default function MessagesClient({
             onKeyDown={handleKeyDown}
             placeholder="Type a message..."
             autoComplete="off"
-            className="flex-1 app-input-bg app-text rounded-full px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
+            className="flex-1 app-input-bg app-text rounded-full px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-violet-500"
           />
 
           <button
             onClick={sendMessage}
             disabled={(!input.trim() && !imageFile) || sending}
-            className="flex-shrink-0 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white p-2.5 rounded-full transition-opacity"
+            className="flex-shrink-0 bg-violet-600 hover:bg-violet-700 disabled:opacity-50 text-white p-2.5 rounded-full transition-opacity"
           >
             <Send className="h-4 w-4" />
           </button>

@@ -13,11 +13,11 @@ import { PUBLIC_COMMUNITIES } from "@/lib/communities"
 const supabase = createClient()
 
 const PROFILE_THEMES = [
-  { id: "default", label: "Default", from: "from-indigo-900/50", to: "to-zinc-800" },
+  { id: "default", label: "Default", from: "from-violet-900/50", to: "to-zinc-800" },
   { id: "ocean", label: "Ocean", from: "from-blue-900/60", to: "to-cyan-800/60" },
   { id: "sunset", label: "Sunset", from: "from-orange-900/60", to: "to-pink-800/60" },
   { id: "forest", label: "Forest", from: "from-green-900/60", to: "to-emerald-800/60" },
-  { id: "galaxy", label: "Galaxy", from: "from-purple-900/60", to: "to-indigo-800/60" },
+  { id: "galaxy", label: "Galaxy", from: "from-purple-900/60", to: "to-violet-800/60" },
   { id: "fire", label: "Fire", from: "from-red-900/60", to: "to-orange-800/60" },
   { id: "midnight", label: "Midnight", from: "from-zinc-900", to: "to-zinc-700" },
   { id: "rose", label: "Rose", from: "from-rose-900/60", to: "to-pink-700/60" },
@@ -171,7 +171,7 @@ export default function SettingsClient({ user, profile, notifSettings }: Setting
   const notifOptions: { key: keyof Omit<NotifSettings, "user_id">; label: string; desc: string; icon: React.ReactNode }[] = [
     { key: "likes", label: "Likes", desc: "When someone likes your post", icon: <Heart className="h-4 w-4 text-red-400" /> },
     { key: "comments", label: "Comments", desc: "When someone replies to your post", icon: <MessageCircle className="h-4 w-4 text-blue-400" /> },
-    { key: "messages", label: "Messages", desc: "When you receive a direct message", icon: <MessageCircle className="h-4 w-4 text-indigo-400" /> },
+    { key: "messages", label: "Messages", desc: "When you receive a direct message", icon: <MessageCircle className="h-4 w-4 text-violet-400" /> },
     { key: "friend_requests", label: "Friend Requests", desc: "When someone sends you a connection request", icon: <UserPlus className="h-4 w-4 text-green-400" /> },
     { key: "new_posts_from_friends", label: "Posts from Friends", desc: "When your friends share something new", icon: <FileText className="h-4 w-4 text-yellow-400" /> },
     { key: "community_posts", label: "Community Posts", desc: "New posts in your communities", icon: <FileText className="h-4 w-4 text-purple-400" /> },
@@ -205,7 +205,7 @@ export default function SettingsClient({ user, profile, notifSettings }: Setting
               <button key={id} onClick={() => setActiveTab(id)}
                 className={cn(
                   "flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all whitespace-nowrap w-full text-left",
-                  activeTab === id ? "bg-indigo-600 text-white" : "app-text-muted hover:opacity-80 app-surface border app-border"
+                  activeTab === id ? "bg-violet-600 text-white" : "app-text-muted hover:opacity-80 app-surface border app-border"
                 )}>
                 {icon}{label}
               </button>
@@ -228,13 +228,13 @@ export default function SettingsClient({ user, profile, notifSettings }: Setting
                 {/* Avatar upload */}
                 <div className="flex items-center gap-4">
                   <div className="relative">
-                    <div className="w-20 h-20 rounded-full bg-indigo-600 overflow-hidden ring-2 ring-zinc-700">
+                    <div className="w-20 h-20 rounded-full bg-violet-600 overflow-hidden ring-2 ring-zinc-700">
                       <img src={avatarUrl || "/default-avatar.png"} alt="" className="w-full h-full object-cover" />
                     </div>
                     <button
                       onClick={() => fileInputRef.current?.click()}
                       disabled={avatarUploading}
-                      className="absolute bottom-0 right-0 w-7 h-7 bg-indigo-600 hover:bg-indigo-700 rounded-full flex items-center justify-center border-2 border-zinc-900"
+                      className="absolute bottom-0 right-0 w-7 h-7 bg-violet-600 hover:bg-violet-700 rounded-full flex items-center justify-center border-2 border-zinc-900"
                     >
                       <Camera className="h-3.5 w-3.5 text-white" />
                     </button>
@@ -243,7 +243,7 @@ export default function SettingsClient({ user, profile, notifSettings }: Setting
                   <div>
                     <p className="text-sm font-medium app-text">Profile Photo</p>
                     <button onClick={() => fileInputRef.current?.click()} disabled={avatarUploading}
-                      className="text-xs text-indigo-400 hover:underline mt-0.5">
+                      className="text-xs text-violet-400 hover:underline mt-0.5">
                       {avatarUploading ? "Uploading..." : "Choose from files"}
                     </button>
                   </div>
@@ -253,19 +253,19 @@ export default function SettingsClient({ user, profile, notifSettings }: Setting
                   <div>
                     <label className="block text-sm font-medium app-text mb-1.5">Full Name</label>
                     <input value={fullName} onChange={e => setFullName(e.target.value)}
-                      className="w-full app-input-bg app-text border app-border rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
+                      className="w-full app-input-bg app-text border app-border rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-violet-500"
                       placeholder="Your full name" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium app-text mb-1.5">Bio</label>
                     <textarea value={bio} onChange={e => setBio(e.target.value)} rows={3}
-                      className="w-full app-input-bg app-text border app-border rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
+                      className="w-full app-input-bg app-text border app-border rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-violet-500 resize-none"
                       placeholder="Tell others a bit about yourself..." />
                   </div>
                   <div>
                     <label className="block text-sm font-medium app-text mb-1.5">Program</label>
                     <select value={role} onChange={e => setRole(e.target.value)}
-                      className="w-full app-input-bg app-text border app-border rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500">
+                      className="w-full app-input-bg app-text border app-border rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-violet-500">
                       <option value="">Select your program</option>
                       <option value="CIMP">CIMP</option>
                       <option value="A-Level">A-Level</option>
@@ -296,7 +296,7 @@ export default function SettingsClient({ user, profile, notifSettings }: Setting
                       className={cn(
                         "rounded-xl h-10 bg-gradient-to-r transition-all border-2",
                         t.from, t.to,
-                        theme === t.id ? "border-indigo-400 scale-105" : "border-transparent"
+                        theme === t.id ? "border-violet-400 scale-105" : "border-transparent"
                       )}>
                       <span className="sr-only">{t.label}</span>
                     </button>
@@ -306,7 +306,7 @@ export default function SettingsClient({ user, profile, notifSettings }: Setting
                   {PROFILE_THEMES.map(t => (
                     <button key={t.id} onClick={() => setTheme(t.id)}
                       className={cn("text-xs px-2.5 py-1 rounded-full border transition-colors",
-                        theme === t.id ? "bg-indigo-600 text-white border-indigo-600" : "app-input-bg app-text-muted border-transparent")}>
+                        theme === t.id ? "bg-violet-600 text-white border-violet-600" : "app-input-bg app-text-muted border-transparent")}>
                       {t.label}
                     </button>
                   ))}
@@ -331,7 +331,7 @@ export default function SettingsClient({ user, profile, notifSettings }: Setting
                           value={socials[platform.key] ?? ""}
                           onChange={e => setSocials(prev => ({ ...prev, [platform.key]: e.target.value }))}
                           placeholder={platform.placeholder}
-                          className="w-full app-input-bg app-text border app-border rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
+                          className="w-full app-input-bg app-text border app-border rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-violet-500"
                         />
                       </div>
                     </div>
@@ -353,7 +353,7 @@ export default function SettingsClient({ user, profile, notifSettings }: Setting
                       const hobby = HOBBY_OPTIONS.find(h => h.value === slug)
                       if (!hobby) return null
                       return (
-                        <span key={slug} className="flex items-center gap-1.5 bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 px-3 py-1 rounded-full text-sm">
+                        <span key={slug} className="flex items-center gap-1.5 bg-violet-600/20 text-violet-400 border border-violet-500/30 px-3 py-1 rounded-full text-sm">
                           {hobby.label}
                           <button onClick={() => toggleHobby(slug)} className="hover:text-white">
                             <X className="h-3 w-3" />
@@ -369,7 +369,7 @@ export default function SettingsClient({ user, profile, notifSettings }: Setting
                   value={hobbySearch}
                   onChange={e => setHobbySearch(e.target.value)}
                   placeholder="Search hobbies..."
-                  className="w-full app-input-bg app-text border app-border rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full app-input-bg app-text border app-border rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-violet-500"
                 />
 
                 {/* Options */}
@@ -379,7 +379,7 @@ export default function SettingsClient({ user, profile, notifSettings }: Setting
                       className={cn(
                         "w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between",
                         hobbies.includes(hobby.value)
-                          ? "bg-indigo-600/20 text-indigo-400"
+                          ? "bg-violet-600/20 text-violet-400"
                           : "app-input-bg app-text hover:opacity-80"
                       )}>
                       {hobby.label}
@@ -390,7 +390,7 @@ export default function SettingsClient({ user, profile, notifSettings }: Setting
               </div>
 
               <button onClick={saveProfile} disabled={saving}
-                className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 text-white px-6 py-2.5 rounded-xl text-sm font-medium transition-colors">
+                className="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 disabled:opacity-60 text-white px-6 py-2.5 rounded-xl text-sm font-medium transition-colors">
                 <Save className="h-4 w-4" />
                 {saving ? "Saving..." : "Save All Changes"}
               </button>
@@ -416,7 +416,7 @@ export default function SettingsClient({ user, profile, notifSettings }: Setting
                     </div>
                     <button onClick={() => toggleNotif(key)}
                       className={cn("relative inline-flex h-6 w-11 items-center rounded-full transition-colors flex-shrink-0",
-                        notifs[key] ? "bg-indigo-600" : "bg-zinc-600")}>
+                        notifs[key] ? "bg-violet-600" : "bg-zinc-600")}>
                       <span className={cn("inline-block h-4 w-4 transform rounded-full bg-white transition-transform shadow-sm",
                         notifs[key] ? "translate-x-6" : "translate-x-1")} />
                     </button>
@@ -424,7 +424,7 @@ export default function SettingsClient({ user, profile, notifSettings }: Setting
                 ))}
               </div>
               <button onClick={saveNotifications} disabled={saving}
-                className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 text-white px-6 py-2.5 rounded-xl text-sm font-medium transition-colors">
+                className="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 disabled:opacity-60 text-white px-6 py-2.5 rounded-xl text-sm font-medium transition-colors">
                 <Save className="h-4 w-4" />
                 {saving ? "Saving..." : "Save Preferences"}
               </button>
@@ -453,7 +453,7 @@ export default function SettingsClient({ user, profile, notifSettings }: Setting
                       </div>
                       <button onClick={() => setOn(v => !v)}
                         className={cn("relative inline-flex h-6 w-11 items-center rounded-full transition-colors flex-shrink-0",
-                          on ? "bg-indigo-600" : "bg-zinc-600")}>
+                          on ? "bg-violet-600" : "bg-zinc-600")}>
                         <span className={cn("inline-block h-4 w-4 transform rounded-full bg-white transition-transform shadow-sm",
                           on ? "translate-x-6" : "translate-x-1")} />
                       </button>

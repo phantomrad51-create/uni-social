@@ -66,7 +66,7 @@ export function ConnectionCard({ profile, initialStatus, userId }: ConnectionCar
 
   return (
     <div className="bg-gray-900 rounded-xl p-5 flex items-center gap-4">
-      <div className="w-14 h-14 rounded-full bg-indigo-600 flex items-center justify-center text-xl font-bold overflow-hidden flex-shrink-0">
+      <div className="w-14 h-14 rounded-full bg-violet-600 flex items-center justify-center text-xl font-bold overflow-hidden flex-shrink-0">
         {profile.avatar_url
           ? <img src={profile.avatar_url} alt="" className="w-full h-full object-cover" />
           : (displayName[0] ?? "S")}
@@ -79,7 +79,7 @@ export function ConnectionCard({ profile, initialStatus, userId }: ConnectionCar
         {status === "none" && (
           <button
             onClick={handleSendRequest}
-            className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm px-4 py-2 rounded-lg"
+            className="bg-violet-600 hover:bg-violet-700 text-white text-sm px-4 py-2 rounded-lg"
           >
             Connect
           </button>

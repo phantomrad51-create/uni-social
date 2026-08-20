@@ -105,7 +105,7 @@ export function VerifyForm({ email }: VerifyFormProps) {
               onChange={e => handleDigit(i, e.target.value)}
               onKeyDown={e => handleKeyDown(i, e)}
               onFocus={e => e.target.select()}
-              className="w-12 h-14 text-center text-2xl font-bold rounded-xl border-2 border-zinc-300 bg-white text-zinc-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100 dark:focus:border-indigo-400"
+              className="w-12 h-14 text-center text-2xl font-bold rounded-xl border-2 border-zinc-300 bg-white text-zinc-900 focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 transition-all dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100 dark:focus:border-violet-400"
             />
           ))}
         </div>
@@ -113,7 +113,7 @@ export function VerifyForm({ email }: VerifyFormProps) {
         <button
           type="submit"
           disabled={!isComplete}
-          className="w-full rounded-lg bg-indigo-600 py-2.5 font-medium text-white transition hover:bg-indigo-700 disabled:opacity-40 disabled:cursor-not-allowed"
+          className="w-full rounded-lg bg-violet-600 py-2.5 font-medium text-white transition hover:bg-violet-700 disabled:opacity-40 disabled:cursor-not-allowed"
         >
           Verify Email
         </button>
@@ -125,7 +125,7 @@ export function VerifyForm({ email }: VerifyFormProps) {
             <input type="hidden" name="email" value={email} />
             <button
               type="submit"
-              className="text-sm text-indigo-600 hover:underline dark:text-indigo-400 font-medium"
+              className="text-sm text-violet-600 hover:underline dark:text-violet-400 font-medium"
             >
               Resend code
             </button>
@@ -140,7 +140,7 @@ export function VerifyForm({ email }: VerifyFormProps) {
 
       <p className="text-center text-xs text-zinc-400 dark:text-zinc-500">
         Wrong email?{" "}
-        <a href="/signup" className="text-indigo-500 hover:underline">
+        <a href="/signup" className="text-violet-500 hover:underline">
           Go back
         </a>
       </p>

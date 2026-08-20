@@ -34,7 +34,7 @@ export default async function ConnectionsPage() {
     <div className="min-h-screen bg-gray-950 text-white p-8">
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-between mb-8">
-          <a href="/dashboard" className="text-indigo-500 font-semibold text-lg">
+          <a href="/dashboard" className="text-violet-500 font-semibold text-lg">
             Sunway Connect
           </a>
           <div className="flex items-center gap-4">

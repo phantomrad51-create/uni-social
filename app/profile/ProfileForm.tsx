@@ -40,7 +40,7 @@ export function ProfileForm({ initialProfile }: ProfileFormProps) {
       <form action={formAction} className="mt-6 space-y-5">
         {/* Avatar Preview */}
         <div className="flex items-center gap-4">
-          <div className="flex h-16 w-16 flex-none items-center justify-center overflow-hidden rounded-full bg-indigo-600 text-lg font-bold text-white">
+          <div className="flex h-16 w-16 flex-none items-center justify-center overflow-hidden rounded-full bg-violet-600 text-lg font-bold text-white">
             {avatarDefault
               ? <img src={avatarDefault} alt="Profile" className="h-full w-full object-cover" />
               : <span>{fullNameDefault ? fullNameDefault[0]?.toUpperCase() : "S"}</span>}
@@ -54,7 +54,7 @@ export function ProfileForm({ initialProfile }: ProfileFormProps) {
           <input
             id="avatar_url" name="avatar_url" type="url"
             defaultValue={avatarDefault} placeholder="https://..."
-            className="w-full rounded-xl border border-zinc-700 bg-zinc-800 px-4 py-2 text-sm text-white placeholder-zinc-500 outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full rounded-xl border border-zinc-700 bg-zinc-800 px-4 py-2 text-sm text-white placeholder-zinc-500 outline-none focus:ring-2 focus:ring-violet-500"
           />
         </div>
 
@@ -64,7 +64,7 @@ export function ProfileForm({ initialProfile }: ProfileFormProps) {
           <input
             id="full_name" name="full_name" type="text"
             defaultValue={fullNameDefault} placeholder="Your name"
-            className="w-full rounded-xl border border-zinc-700 bg-zinc-800 px-4 py-2 text-sm text-white placeholder-zinc-500 outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full rounded-xl border border-zinc-700 bg-zinc-800 px-4 py-2 text-sm text-white placeholder-zinc-500 outline-none focus:ring-2 focus:ring-violet-500"
           />
         </div>
 
@@ -75,7 +75,7 @@ export function ProfileForm({ initialProfile }: ProfileFormProps) {
             id="bio" name="bio" rows={4}
             defaultValue={bioDefault}
             placeholder="What are you studying? What are you interested in?"
-            className="w-full rounded-xl border border-zinc-700 bg-zinc-800 px-4 py-2 text-sm text-white placeholder-zinc-500 outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full rounded-xl border border-zinc-700 bg-zinc-800 px-4 py-2 text-sm text-white placeholder-zinc-500 outline-none focus:ring-2 focus:ring-violet-500"
           />
         </div>
 
@@ -84,7 +84,7 @@ export function ProfileForm({ initialProfile }: ProfileFormProps) {
           <label htmlFor="role" className="block text-sm font-medium text-zinc-300">Program</label>
           <select
             id="role" name="role" defaultValue={roleDefault}
-            className="w-full rounded-xl border border-zinc-700 bg-zinc-800 px-4 py-2 text-sm text-white outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full rounded-xl border border-zinc-700 bg-zinc-800 px-4 py-2 text-sm text-white outline-none focus:ring-2 focus:ring-violet-500"
           >
             <option value="">Select your program</option>
             <option value="CIMP">CIMP</option>
@@ -102,7 +102,7 @@ export function ProfileForm({ initialProfile }: ProfileFormProps) {
         </div>
 
         <button type="submit"
-          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl py-2 text-sm font-medium transition">
+          className="w-full bg-violet-600 hover:bg-violet-700 text-white rounded-xl py-2 text-sm font-medium transition">
           Save profile
         </button>
       </form>

@@ -47,7 +47,7 @@ export default async function AdminPage() {
     <div className="min-h-screen app-bg app-text">
       <div className="app-surface border-b app-border px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <a href="/dashboard" className="text-indigo-500 font-bold text-lg">Sunway Connect</a>
+          <a href="/dashboard" className="text-violet-500 font-bold text-lg">Sunway Connect</a>
           <span className="app-text-muted">|</span>
           <span className="text-yellow-500 font-semibold">Admin Panel</span>
         </div>
@@ -94,7 +94,7 @@ export default async function AdminPage() {
                   <tr key={p.id} className="border-b app-border last:border-0">
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center font-bold overflow-hidden flex-shrink-0">
+                        <div className="w-8 h-8 rounded-full bg-violet-600 flex items-center justify-center font-bold overflow-hidden flex-shrink-0">
                           {p.avatar_url ? <img src={p.avatar_url} alt="" className="w-full h-full object-cover" /> : (p.full_name?.[0] ?? "S")}
                         </div>
                         <p className="font-medium text-sm app-text">{p.full_name ?? "Student"}</p>
@@ -109,14 +109,14 @@ export default async function AdminPage() {
                     <td className="px-4 py-3">
                       <form method="POST" action={`/api/admin/set-role?userId=${p.id}`} className="flex items-center gap-2">
                         <select name="badge_role" defaultValue={p.badge_role ?? ""}
-                          className="app-input-bg border app-border app-text text-sm rounded-lg px-2 py-1 outline-none focus:ring-2 focus:ring-indigo-500">
+                          className="app-input-bg border app-border app-text text-sm rounded-lg px-2 py-1 outline-none focus:ring-2 focus:ring-violet-500">
                           <option value="">No badge</option>
                           <option value="Founder">Founder</option>
                           <option value="Admin">Admin</option>
                           <option value="Moderator">Moderator</option>
                           <option value="Club Leader">Club Leader</option>
                         </select>
-                        <button type="submit" className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm px-3 py-1 rounded-lg">Save</button>
+                        <button type="submit" className="bg-violet-600 hover:bg-violet-700 text-white text-sm px-3 py-1 rounded-lg">Save</button>
                       </form>
                     </td>
                   </tr>
@@ -132,7 +132,7 @@ export default async function AdminPage() {
             {posts?.map((post) => (
               <div key={post.id} className="app-surface rounded-xl p-4 border app-border flex items-start justify-between gap-4">
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-indigo-500">{post.profiles?.full_name ?? "Student"}</p>
+                  <p className="text-sm font-medium text-violet-500">{post.profiles?.full_name ?? "Student"}</p>
                   <p className="app-text text-sm mt-1">{post.content}</p>
                   <p className="app-text-muted text-xs mt-1">{new Date(post.created_at).toLocaleString("en-MY")}</p>
                 </div>

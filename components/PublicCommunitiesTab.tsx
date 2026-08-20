@@ -33,7 +33,7 @@ export function PublicCommunitiesTab() {
           value={search}
           onChange={e => setSearch(e.target.value)}
           placeholder="Search communities..."
-          className="w-full app-input-bg app-text rounded-xl pl-10 pr-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-full app-input-bg app-text rounded-xl pl-10 pr-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-violet-500"
         />
       </div>
 
@@ -45,7 +45,7 @@ export function PublicCommunitiesTab() {
             onClick={() => setActiveCategory(cat)}
             className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
               activeCategory === cat
-                ? "bg-indigo-600 text-white"
+                ? "bg-violet-600 text-white"
                 : "app-input-bg app-text-muted hover:opacity-80"
             }`}
           >
@@ -60,7 +60,7 @@ export function PublicCommunitiesTab() {
           <Link
             key={community.slug}
             href={`/community/${community.slug}`}
-            className="app-surface border app-border rounded-xl p-4 hover:border-indigo-500/50 hover:shadow-lg hover:shadow-indigo-500/10 hover:-translate-y-0.5 transition-all"
+            className="app-surface border app-border rounded-xl p-4 hover:border-violet-500/50 hover:shadow-lg hover:shadow-violet-500/10 hover:-translate-y-0.5 transition-all"
           >
             <div className="flex items-center gap-3">
               <span className="text-2xl">{community.emoji}</span>
@@ -70,7 +70,7 @@ export function PublicCommunitiesTab() {
               </div>
             </div>
             <div className="mt-2">
-              <span className="text-xs app-text-muted bg-indigo-500/10 text-indigo-400 px-2 py-0.5 rounded-full">
+              <span className="text-xs app-text-muted bg-violet-500/10 text-violet-400 px-2 py-0.5 rounded-full">
                 {community.category}
               </span>
             </div>
