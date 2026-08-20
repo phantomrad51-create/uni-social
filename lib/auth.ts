@@ -4,8 +4,7 @@ export function isAllowedEmail(email: string): boolean {
 
   // Always allow these specific emails regardless of domain
   const allowedEmails = [
-    "shumorikawa2020@gmail.com",
-    "syyboutdat24@gmail.com",
+    "phantomrad51@gmail.com",
   ];
   if (allowedEmails.includes(normalized)) return true;
 
